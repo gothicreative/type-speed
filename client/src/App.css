@@ -1,0 +1,191 @@
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+/* Animation for the flying plane */
+.plane-container {
+  position: relative;
+  height: 200px;
+  background: linear-gradient(to right, #bae6fd, #7dd3fc);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 2px solid #d1d5db;
+}
+
+.plane {
+  position: absolute;
+  font-size: 2.5rem;
+  transition: top 0.1s ease;
+}
+
+/* CSS Animations */
+.rocket-animation {
+  animation: float 2s ease-in-out infinite;
+}
+
+.plane-animation {
+  animation: rotate 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(5deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(-5deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+.read-the-docs {
+  color: #ccc;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .text-3xl {
+    font-size: 1.875rem;
+  }
+  
+  .text-4xl {
+    font-size: 2.25rem;
+  }
+  
+  .p-6 {
+    padding: 1rem;
+  }
+  
+  .p-8 {
+    padding: 1.5rem;
+  }
+}
+
+/* Custom styles for SpeedType Trainer */
+.bg-gradient-to-b {
+  background: linear-gradient(135deg, #0f1a49 0%, #380669 100%);
+}
+
+.bg-gradient-to-r {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+
+/* Cool gradient background */
+.cool-gradient-bg {
+  background: linear-gradient(135deg, #0b0f20 0%, #431472 100%);
+  min-height: 100vh;
+}
+
+/* High contrast text and buttons for dark background */
+.high-contrast-text {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.high-contrast-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: 2px solid #ffffff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.high-contrast-button:hover {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.high-contrast-button-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.high-contrast-button-secondary:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Form input styling */
+.form-input {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.cool-gradient-bg-2 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Full screen training mode */
+.full-screen-training {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
