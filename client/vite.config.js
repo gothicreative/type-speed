@@ -11,5 +11,5 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-  base: process.env.VITE_BASE_PATH || '/type-speed',
+  base: '/',
 })
