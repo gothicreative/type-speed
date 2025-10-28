@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="cool-gradient-bg min-h-screen flex flex-col items-center justify-center p-4">
-      <div className="max-w-4xl w-full bg-white/90 rounded-2xl shadow-xl p-6 md:p-8">
+      <div className="max-w-4xl w-full  rounded-2xl shadow-xl p-6 md:p-8">
         {/* Navigation */}
         <nav className="mb-6">
           <div className="flex flex-wrap justify-between items-center gap-4">
