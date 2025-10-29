@@ -2,6 +2,8 @@
 
 SpeedType Trainer is an interactive typing web app built with React and Node.js, deployed on Vercel. It helps users improve typing speed through a fun challenge: a 2D flying character that moves faster as you type correctly.
 
+<!-- Last updated to fix GitHub push verification -->
+
 ## 🧩 Key Features
 
 ### Typing Challenge
