@@ -358,7 +358,7 @@ app.get('/leaderboard', async (req, res) => {
 
 // Basic route
 app.get('/', (req, res) => {
-  res.json({ message: 'SpeedType Trainer API' });
+  res.json({ message: 'SpeedType Trainer API - Vercel Serverless Function' });
 });
 
 // Vercel serverless function export
