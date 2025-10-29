@@ -83,27 +83,36 @@ Payments can be integrated with Stripe.
 1. **Clone the repository:**
    ```bash
    git clone <repository-url>
-   cd speedtype-trainer
+   cd type-flow-game
    ```
 
-2. **Install backend dependencies:**
+2. **Install root dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Install backend dependencies:**
    ```bash
    cd server
    npm install
    ```
 
-3. **Install frontend dependencies:**
+4. **Install frontend dependencies:**
    ```bash
    cd ../client
    npm install
    ```
 
-4. **Set up environment variables:**
+5. **Set up environment variables:**
    - Create a `.env` file in the `server` directory
    - Add your MongoDB connection string and other secrets
 
-5. **Start the development servers:**
+6. **Start the development servers:**
    ```bash
+   # From the root directory, start both frontend and backend
+   npm run dev
+   
+   # Or start them separately:
    # In one terminal, start the backend
    cd server
    npm run dev
@@ -113,14 +122,14 @@ Payments can be integrated with Stripe.
    npm run dev
    ```
 
-6. **Open your browser:**
-   - Frontend: http://localhost:5175
+7. **Open your browser:**
+   - Frontend: http://localhost:5173
    - Backend API: http://localhost:5000
 
 ## 📁 Project Structure
 
 ```
-speedtype-trainer/
+type-flow-game/
 ├── client/              # React frontend
 │   ├── public/          # Static assets
 │   ├── src/             # Source code
@@ -137,6 +146,7 @@ speedtype-trainer/
 │   ├── middleware/      # Custom middleware
 │   ├── index.js         # Server entry point
 │   └── package.json     # Backend dependencies
+├── package.json         # Root package with build scripts
 └── README.md            # This file
 ```
 
@@ -187,7 +197,8 @@ npm test
 
 4. **Configure Build Settings**
    - Framework Preset: `Vite`
-   - Root Directory: `.`
+   - Root Directory: `.` (root of the project)
+   - Build Command: `npm run build`
    - Output Directory: `client/dist`
 
 5. **Deploy!**
@@ -199,7 +210,6 @@ If you prefer to deploy manually:
 
 1. **Build the frontend**
    ```bash
-   cd client
    npm run build
    ```
 
