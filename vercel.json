@@ -15,6 +15,18 @@
     {
       "src": "server/api/register.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/results.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/users.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/leaderboard.js",
+      "use": "@vercel/node"
     }
   ]
 }
