@@ -38,10 +38,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Login user
-app.post('/api/login', async (req, res) => {
+// Register a new user
+app.post('/api/register', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
     
     // Connect to MongoDB
     let dbConnected = false;
@@ -59,34 +59,45 @@ app.post('/api/login', async (req, res) => {
     }
     
     if (dbConnected) {
-      // Find user by email
-      const user = await User.findOne({ email });
-      if (!user) {
-        return res.status(400).json({ message: 'Invalid credentials' });
+      // Check if user already exists
+      const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+      if (existingUser) {
+        return res.status(400).json({ message: 'User already exists with this email or username' });
       }
       
-      // Check password
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-      }
+      // Hash password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      
+      // Create new user
+      const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+        subscription: 'free',
+        wpm: 0,
+        accuracy: 0,
+        testsTaken: 0
+      });
+      
+      const savedUser = await newUser.save();
       
       // Generate token
-      const token = generateToken(user._id);
+      const token = generateToken(savedUser._id);
       
-      res.status(200).json({ 
-        message: 'Login successful', 
-        userId: user._id, 
-        username: user.username,
-        subscription: user.subscription,
+      res.status(201).json({ 
+        message: 'User created successfully', 
+        userId: savedUser._id,
+        username: savedUser.username,
+        subscription: savedUser.subscription,
         token
       });
     } else {
       // Mock mode - always successful
-      res.status(200).json({ 
-        message: 'Login successful', 
-        userId: 'mock-user-id', 
-        username: 'MockUser',
+      res.status(201).json({ 
+        message: 'User created successfully', 
+        userId: 'mock-user-id',
+        username: username,
         subscription: 'free'
       });
     }
