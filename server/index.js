@@ -9,7 +9,6 @@ const jwt = require('jsonwebtoken');
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
@@ -357,11 +356,9 @@ app.get('/api/leaderboard', async (req, res) => {
 });
 
 // Basic route
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.json({ message: 'SpeedType Trainer API' });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Vercel serverless function export
+module.exports = app;
