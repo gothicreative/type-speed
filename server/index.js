@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken');
 // Load environment variables
 dotenv.config();
 
+// Create express app
 const app = express();
 
 // Middleware
