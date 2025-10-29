@@ -101,7 +101,7 @@ const TestResult = mongoose.model('TestResult', testResultSchema);
 // Routes
 
 // Register a new user
-app.post('/register', async (req, res) => {
+app.post('/api/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
     
@@ -154,7 +154,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Login user
-app.post('/login', async (req, res) => {
+app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     
@@ -196,7 +196,7 @@ app.post('/login', async (req, res) => {
 });
 
 // Save typing test result
-app.post('/results', protect, async (req, res) => {
+app.post('/api/results', protect, async (req, res) => {
   try {
     const { userId, wpm, accuracy, timeTaken, textLength } = req.body;
     
@@ -242,7 +242,7 @@ app.post('/results', protect, async (req, res) => {
 });
 
 // Get user stats
-app.get('/users/:userId/stats', protect, async (req, res) => {
+app.get('/api/users/:userId/stats', protect, async (req, res) => {
   try {
     const { userId } = req.params;
     
@@ -290,7 +290,7 @@ app.get('/users/:userId/stats', protect, async (req, res) => {
 });
 
 // Update subscription
-app.patch('/users/:userId/subscription', protect, async (req, res) => {
+app.patch('/api/users/:userId/subscription', protect, async (req, res) => {
   try {
     const { userId } = req.params;
     const { subscription } = req.body;
@@ -330,7 +330,7 @@ app.patch('/users/:userId/subscription', protect, async (req, res) => {
 });
 
 // Get leaderboard - top users by WPM
-app.get('/leaderboard', async (req, res) => {
+app.get('/api/leaderboard', async (req, res) => {
   try {
     if (dbConnected) {
       // Get top 10 users by WPM
@@ -361,6 +361,14 @@ app.get('/leaderboard', async (req, res) => {
 app.get('/', (req, res) => {
   res.json({ message: 'SpeedType Trainer API - Vercel Serverless Function' });
 });
+
+// Start server for local development
+const PORT = process.env.PORT || 5000;
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
 
 // Vercel serverless function export
 module.exports = app;
