@@ -33,6 +33,7 @@ const connectDB = async () => {
 };
 
 // Connect to MongoDB
+console.log('Attempting to connect to MongoDB...');
 connectDB();
 
 // Helper function to generate JWT token
