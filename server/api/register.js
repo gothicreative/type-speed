@@ -94,11 +94,15 @@ app.post('/register', async (req, res) => {
       });
     } else {
       // Mock mode - always successful
+      // Generate a mock token for authentication
+      const mockToken = jwt.sign({ userId: 'mock-user-id' }, 'mock-secret', { expiresIn: '30d' });
+      
       res.status(201).json({ 
         message: 'User created successfully', 
         userId: 'mock-user-id',
         username: username,
-        subscription: 'free'
+        subscription: 'free',
+        token: mockToken
       });
     }
   } catch (error) {
@@ -106,4 +110,19 @@ app.post('/register', async (req, res) => {
   }
 });
 
-module.exports = app;
+// Export as Vercel serverless function
+module.exports = (req, res) => {
+  // Apply CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  
+  // Pass the request to the Express app
+  return app(req, res);
+};

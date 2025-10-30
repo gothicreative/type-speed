@@ -53,7 +53,7 @@ const protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
       
       // Verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, process.env.JWT_SECRET || 'mock-secret');
       
       // Get user from token
       req.user = await User.findById(decoded.userId).select('-password');
@@ -120,6 +120,24 @@ app.get('/users/:userId/stats', async (req, res) => {
         recentResults
       });
     } else {
+      // Mock mode - simulate authentication check
+      let userIdFromToken = null;
+      try {
+        const authHeader = req.headers.authorization;
+        if (authHeader && authHeader.startsWith('Bearer')) {
+          const token = authHeader.split(' ')[1];
+          const decoded = jwt.verify(token, 'mock-secret');
+          userIdFromToken = decoded.userId;
+        }
+      } catch (error) {
+        return res.status(401).json({ message: 'Not authorized, token failed' });
+      }
+      
+      // Check if requested userId matches token userId
+      if (userIdFromToken !== userId) {
+        return res.status(401).json({ message: 'Not authorized, token failed' });
+      }
+      
       // Mock mode
       res.status(200).json({
         user: {
@@ -195,4 +213,19 @@ app.patch('/users/:userId/subscription', async (req, res) => {
   }
 });
 
-module.exports = app;
+// Export as Vercel serverless function
+module.exports = (req, res) => {
+  // Apply CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+  
+  // Pass the request to the Express app
+  return app(req, res);
+};

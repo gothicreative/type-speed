@@ -11,9 +11,49 @@
     {
       "src": "server/index.js",
       "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/login.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/register.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/results.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/users.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "server/api/leaderboard.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/login",
+      "dest": "server/api/login.js"
+    },
+    {
+      "src": "/api/register",
+      "dest": "server/api/register.js"
+    },
+    {
+      "src": "/api/results",
+      "dest": "server/api/results.js"
+    },
+    {
+      "src": "/api/users/(.*)",
+      "dest": "server/api/users.js"
+    },
+    {
+      "src": "/api/leaderboard",
+      "dest": "server/api/leaderboard.js"
+    },
     {
       "src": "/api/(.*)",
       "dest": "server/index.js"

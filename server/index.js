@@ -19,15 +19,27 @@ app.use(express.json());
 let dbConnected = false;
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/speedtype', {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    console.log('Attempting MongoDB connection with URI:', process.env.MONGO_URI);
+    // Add a timeout to the connection attempt
+    const conn = await Promise.race([
+      mongoose.connect(process.env.MONGO_URI, {
+        // Remove deprecated options
+        serverSelectionTimeoutMS: 5000, // 5 second timeout
+        socketTimeoutMS: 5000 // 5 second socket timeout
+      }),
+      new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Connection timeout')), 5000)
+      )
+    ]);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     dbConnected = true;
   } catch (error) {
     console.log(`MongoDB connection failed: ${error.message}`);
     console.log('Running in mock mode without database');
+    console.log('To fix this issue:');
+    console.log('1. Check your MONGO_URI in the .env file');
+    console.log('2. Ensure your IP is whitelisted in MongoDB Atlas');
+    console.log('3. Verify your MongoDB Atlas credentials');
     dbConnected = false;
   }
 };
@@ -140,9 +152,11 @@ app.post('/api/register', async (req, res) => {
         token
       });
     } else {
-      // Mock mode - always successful
+      // Mock mode - always successful (for development only)
+      // In production, this should never happen
+      console.log('WARNING: Running in mock mode. Database connection failed.');
       res.status(201).json({ 
-        message: 'User created successfully', 
+        message: 'User created successfully (mock mode)', 
         userId: 'mock-user-id',
         username: username,
         subscription: 'free'
@@ -182,9 +196,11 @@ app.post('/api/login', async (req, res) => {
         token
       });
     } else {
-      // Mock mode - always successful
+      // Mock mode - always successful (for development only)
+      // In production, this should never happen
+      console.log('WARNING: Running in mock mode. Database connection failed.');
       res.status(200).json({ 
-        message: 'Login successful', 
+        message: 'Login successful (mock mode)', 
         userId: 'mock-user-id', 
         username: 'MockUser',
         subscription: 'free'
