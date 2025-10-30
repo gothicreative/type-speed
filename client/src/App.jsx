@@ -6,12 +6,28 @@ import Register from './pages/Register'
 import Profile from './pages/Profile'
 import Game from './pages/Game'
 import Leaderboard from './pages/Leaderboard'
+import TutorialPage from './pages/TutorialPage'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
   const { user, logout, stats, loading } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
+  const [showTutorial, setShowTutorial] = useState(false)
+
+  // Check if user has seen tutorial before
+  useEffect(() => {
+    const hasSeenTutorial = localStorage.getItem('hasSeenTutorial')
+    if (!hasSeenTutorial && location.pathname === '/') {
+      setShowTutorial(true)
+    }
+  }, [location.pathname])
+
+  const handleTutorialComplete = () => {
+    setShowTutorial(false)
+    localStorage.setItem('hasSeenTutorial', 'true')
+  }
 
   if (loading) {
     return (
@@ -23,6 +39,11 @@ function App() {
 
   return (
     <div className="cool-gradient-bg min-h-screen flex flex-col items-center justify-center p-4">
+      {/* Tutorial Page */}
+      {showTutorial && (
+        <TutorialPage onNext={handleTutorialComplete} />
+      )}
+
       <div className="max-w-4xl w-full  rounded-2xl shadow-xl p-6 md:p-8">
         {/* Navigation */}
         <nav className="mb-6">

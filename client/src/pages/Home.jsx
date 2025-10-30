@@ -158,7 +158,7 @@ const Home = () => {
       {/* Leaderboard Preview */}
       <div className="mt-12 max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-bold text-gray-800">Top Performers</h3>
+          <h3 className="text-xl font-bold text-white-800">Top Performers</h3>
           <button 
             onClick={() => navigate('/leaderboard')}
             className="text-blue-600 hover:text-blue-800 font-medium"

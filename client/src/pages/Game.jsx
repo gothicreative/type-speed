@@ -4,11 +4,11 @@ import { saveTestResult } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const sampleTexts = [
-  "The quick brown fox jumps over the lazy dog that jumps over the lazy dog dog that jumps over the lazy dog",
-  "Programming is the process of creating a set of instructions that tell a computer how to perform a task",
-  "React makes it painless to create interactive UIs and interactive elements on websites",
-  "Frontend development involves creating the user interface of a website or application",
-  "SpeedType Trainer helps improve your typing speed and accuracy and efficiency"
+  "Technology is transforming the world faster than ever before, helping people connect, learn, and solve complex problems through innovation. From smartphones to smart homes, digital tools have become part of our daily lives, making tasks easier and communication more effective.",
+  "Artificial intelligence is shaping the future by allowing computers to think and make decisions like humans. It improves typing assistants, voice recognition, and even gaming experiences by learning from data and user behavior.",
+  "Cloud computing gives everyone the power to store, share, and access files from anywhere at any time. It keeps projects safe and accessible, making teamwork faster and more efficient.",
+  "Cybersecurity plays a vital role in protecting personal data and keeping systems safe from hackers or digital attacks. Strong passwords and encryption help secure our online activities.",
+  "Coding teaches logical thinking and creativity, enabling people to build apps, automate tasks, and design solutions that shape the digital world."
 ];
 
 const proTexts = [
