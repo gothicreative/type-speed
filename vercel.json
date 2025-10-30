@@ -35,27 +35,27 @@
   ],
   "routes": [
     {
-      "src": "/api/login",
+      "src": "/login",
       "dest": "server/api/login.js"
     },
     {
-      "src": "/api/register",
+      "src": "/register",
       "dest": "server/api/register.js"
     },
     {
-      "src": "/api/results",
+      "src": "/results",
       "dest": "server/api/results.js"
     },
     {
-      "src": "/api/users/(.*)",
+      "src": "/users/(.*)",
       "dest": "server/api/users.js"
     },
     {
-      "src": "/api/leaderboard",
+      "src": "/leaderboard",
       "dest": "server/api/leaderboard.js"
     },
     {
-      "src": "/api/(.*)",
+      "src": "/(.*)",
       "dest": "server/index.js"
     }
   ]
