@@ -9,10 +9,6 @@
       }
     },
     {
-      "src": "server/index.js",
-      "use": "@vercel/node"
-    },
-    {
       "src": "server/api/login.js",
       "use": "@vercel/node"
     },
@@ -35,28 +31,24 @@
   ],
   "routes": [
     {
-      "src": "/login",
+      "src": "/api/login",
       "dest": "server/api/login.js"
     },
     {
-      "src": "/register",
+      "src": "/api/register",
       "dest": "server/api/register.js"
     },
     {
-      "src": "/results",
+      "src": "/api/results",
       "dest": "server/api/results.js"
     },
     {
-      "src": "/users/(.*)",
+      "src": "/api/users/(.*)",
       "dest": "server/api/users.js"
     },
     {
-      "src": "/leaderboard",
+      "src": "/api/leaderboard",
       "dest": "server/api/leaderboard.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "server/index.js"
     }
   ]
 }

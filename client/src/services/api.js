@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance
 const api = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000',
+  baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -25,7 +25,7 @@ api.interceptors.request.use(
 // User registration
 export const registerUser = async (userData) => {
   try {
-    const response = await api.post('/api/register', userData);
+    const response = await api.post('/register', userData);
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: 'An error occurred' };
@@ -35,7 +35,7 @@ export const registerUser = async (userData) => {
 // User login
 export const loginUser = async (credentials) => {
   try {
-    const response = await api.post('/api/login', credentials);
+    const response = await api.post('/login', credentials);
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: 'An error occurred' };
@@ -45,7 +45,7 @@ export const loginUser = async (credentials) => {
 // Save test result
 export const saveTestResult = async (resultData) => {
   try {
-    const response = await api.post('/api/results', resultData);
+    const response = await api.post('/results', resultData);
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: 'An error occurred' };
@@ -55,7 +55,7 @@ export const saveTestResult = async (resultData) => {
 // Get user stats
 export const getUserStats = async (userId) => {
   try {
-    const response = await api.get(`/api/users/${userId}/stats`);
+    const response = await api.get(`/users/${userId}/stats`);
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: 'An error occurred' };
@@ -65,7 +65,7 @@ export const getUserStats = async (userId) => {
 // Update subscription
 export const updateSubscription = async (userId, subscription) => {
   try {
-    const response = await api.patch(`/api/users/${userId}/subscription`, { subscription });
+    const response = await api.patch(`/users/${userId}/subscription`, { subscription });
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: 'An error occurred' };
@@ -75,7 +75,7 @@ export const updateSubscription = async (userId, subscription) => {
 // Get leaderboard
 export const getLeaderboard = async () => {
   try {
-    const response = await api.get('/api/leaderboard');
+    const response = await api.get('/leaderboard');
     return response.data;
   } catch (error) {
     throw error.response?.data || { message: 'An error occurred' };
