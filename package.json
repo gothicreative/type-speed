@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A full-stack typing game application",
   "scripts": {
-    "build": "npm run build --prefix client",
+    "build": "cd client && npm install && npm run build",
     "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
     "start": "node server/index.js"
   },

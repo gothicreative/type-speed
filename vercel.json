@@ -49,6 +49,10 @@
     {
       "src": "/api/leaderboard",
       "dest": "server/api/leaderboard.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "client/dist/index.html"
     }
   ]
 }
