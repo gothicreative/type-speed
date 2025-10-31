@@ -7,7 +7,7 @@ const isProduction = window.location.hostname !== 'localhost' &&
                     !window.location.hostname.startsWith('192.168.');
                     
 const api = axios.create({
-  baseURL: isProduction ? '/api' : 'http://localhost:5000/api',
+  baseURL: isProduction ? '/' : 'http://localhost:5000/api',
   headers: {
     'Content-Type': 'application/json',
   },
