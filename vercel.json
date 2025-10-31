@@ -9,23 +9,23 @@
       }
     },
     {
-      "src": "server/api/login.js",
+      "src": "server/login.js",
       "use": "@vercel/node"
     },
     {
-      "src": "server/api/register.js",
+      "src": "server/register.js",
       "use": "@vercel/node"
     },
     {
-      "src": "server/api/results.js",
+      "src": "server/results.js",
       "use": "@vercel/node"
     },
     {
-      "src": "server/api/users.js",
+      "src": "server/users.js",
       "use": "@vercel/node"
     },
     {
-      "src": "server/api/leaderboard.js",
+      "src": "server/leaderboard.js",
       "use": "@vercel/node"
     }
   ],
