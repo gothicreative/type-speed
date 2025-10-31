@@ -31,24 +31,24 @@
   ],
   "routes": [
     {
-      "src": "/api/login",
-      "dest": "server/api/login.js"
+      "src": "/login",
+      "dest": "server/login.js"
     },
     {
-      "src": "/api/register",
-      "dest": "server/api/register.js"
+      "src": "/register",
+      "dest": "server/register.js"
     },
     {
-      "src": "/api/results",
-      "dest": "server/api/results.js"
+      "src": "/results",
+      "dest": "server/results.js"
     },
     {
-      "src": "/api/users/(.*)",
-      "dest": "server/api/users.js"
+      "src": "/users/(.*)",
+      "dest": "server/users.js"
     },
     {
-      "src": "/api/leaderboard",
-      "dest": "server/api/leaderboard.js"
+      "src": "/leaderboard",
+      "dest": "server/leaderboard.js"
     },
     {
       "src": "/(.*)",
