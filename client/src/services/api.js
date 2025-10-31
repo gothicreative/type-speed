@@ -1,8 +1,13 @@
 import axios from 'axios';
 
 // Create axios instance
+// More robust way to determine if we're in production
+const isProduction = window.location.hostname !== 'localhost' && 
+                    window.location.hostname !== '127.0.0.1' &&
+                    !window.location.hostname.startsWith('192.168.');
+                    
 const api = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
+  baseURL: isProduction ? '/api' : 'http://localhost:5000/api',
   headers: {
     'Content-Type': 'application/json',
   },
